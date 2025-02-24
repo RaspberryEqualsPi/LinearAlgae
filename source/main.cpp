@@ -3,6 +3,7 @@
 #include <math.h>
 #include "LinearAlgae.h"
 
+using namespace LinearAlgae;
 int main() { // a demo program utilizing the functions given in the library
 	Matrix demo({
 		Row({1, 2, 0, 3}),

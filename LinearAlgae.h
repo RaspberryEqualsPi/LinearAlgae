@@ -56,14 +56,18 @@ public:
 	Matrix operator-(Matrix& obj);
 	Matrix& operator-=(Matrix& obj);
 	Matrix operator*(float const& obj);
+	Matrix operator*(Matrix& obj);
 	Matrix& operator*=(float const& obj);
 	Matrix operator/(float const& obj);
 	Matrix& operator/=(float const& obj);
 	Matrix(std::vector<Row> arr);
+	Matrix(int m, int n);
 	Matrix(int len);
 private:
 	std::vector<Row> content;
 };
+
+// Utility functions
 
 void printRow(Row row);
 

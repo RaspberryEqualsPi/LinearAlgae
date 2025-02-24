@@ -92,9 +92,11 @@ Row::Row(int len) {
 Row::Row() {
 	// dead row, this kind of row should not be used
 }
+
 // Elementary Operations
 
 ElemOp Matrix::swap(int a, int b) { // R_a <--> R_b
+	// this operation is O(1)
 	ElemOp swapOp;
 	swapOp.operation = ElemOps::swap;
 	swapOp.a = a;
@@ -108,6 +110,7 @@ ElemOp Matrix::swap(int a, int b) { // R_a <--> R_b
 }
 
 ElemOp Matrix::replace(float a, int b, float c, int d) { // a*R_b + c*R_d --> R_d
+	// this operation is O(n)
 	ElemOp replaceOp;
 	replaceOp.operation = ElemOps::replace;
 	replaceOp.a = a;
@@ -123,6 +126,7 @@ ElemOp Matrix::replace(float a, int b, float c, int d) { // a*R_b + c*R_d --> R_
 }
 
 ElemOp Matrix::scale(float a, int b) { // a*R_b --> R_b
+	// this operation is O(n)
 	ElemOp scaleOp;
 	scaleOp.operation = ElemOps::scale;
 	scaleOp.a = a;
@@ -210,6 +214,21 @@ Matrix Matrix::operator*(float const& obj) // scalar multiplication
 	}
 	return res;
 }
+Matrix Matrix::operator*(Matrix& obj) { // O(m_A*n_B*n) algorithm to take the matrix product AB
+	if (getN() != obj.getM()) // in multiplying matrices, the dimensions must have n_A = m_B
+		throw std::invalid_argument("inner dimensions must match to multiply");
+	Matrix res(getM(), obj.getN()); // the resultant matrix will be m x n under the previously stated set of dimensions
+	for (int i = 1; i <= getM(); i++) { // go down the rows of this matrix
+		for (int j = 1; j <= obj.getN(); j++) { // traverse the columns of the second matrix
+			float entry = 0;
+			for (int z = 1; z <= getN(); z++) {
+				entry += getEntry(i, z) * obj.getEntry(z, j); // taking dot product of the row and column
+			}
+			res.setEntry(i, j, entry);
+		}
+	}
+	return res;
+}
 Matrix& Matrix::operator*=(float const& obj) // scalar multiplication
 {
 	for (int i = 1; i <= content.size(); i++) { // maintain convention for i
@@ -241,6 +260,13 @@ Matrix::Matrix(int len) { // forms square matrix
 		content.push_back(Row(len));
 	}
 }
+Matrix::Matrix(int m, int n) { // forms an m x n zero matrix
+	for (int i = 0; i < m; i++) {
+		content.push_back(Row(n));
+	}
+}
+
+// Utility functions
 
 void printRow(Row row) {
 	std::vector<float>* raw = row.getRaw();
@@ -301,8 +327,6 @@ Matrix createIdentityMatrix(int n) {
 	for (int i = 1; i <= n; i++) {
 		I.setEntry(i, i, 1);
 	}
-	//printMatrix(I);
-	//std::cout << "\n";
 	return I;
 }
 
@@ -341,7 +365,7 @@ std::vector<ElemOp> REF(Matrix& matrix) { // O(m^2*n) algorithm to turn m x n ma
 
 std::vector<ElemOp> RREF(Matrix& matrix) { // O(m^2*n) algorithm to turn m x n matrices into RREF, and returns the elementary operations done
 	std::vector<ElemOp> operationList = REF(matrix); // REFing it first makes the process very simple
-	for (int i = matrix.getM() - 1; i >= 1; i--) { // traverse from the back; this loop is O(m^3)
+	for (int i = matrix.getM() - 1; i >= 1; i--) { // traverse from the back; this loop is O(m^2*n)
 		for (int j = i + 1; j <= matrix.getM(); j++) { // to get rid of non-zero entries beyond the pivot within the coefficient section
 			operationList.push_back(matrix.replace(-1 * matrix.getEntry(i, j), j, 1, i)); // (-a_ij)R_j + R_i --> R_i; step that makes its pivot 0
 		}
@@ -359,8 +383,6 @@ Matrix findInverse(Matrix mat) { // O(m^3) algorithm to find inverse of m x m ma
 	// for this reason, we begin with the last operation and work our way to the first
 	Matrix inverse = createIdentityMatrix(matrix.getM());
 	for (int i = 0; i < operationList.size(); i++) {
-		//printOperation(operationList[i]);
-		//std::cout << "\n";
 		inverse.applyOperation(operationList[i]);
 	}
 	return inverse;

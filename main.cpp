@@ -3,7 +3,7 @@
 #include <math.h>
 #include "LinearAlgae.h"
 
-int main() {
+int main() { // a demo program utilizing the functions given in the library
 	Matrix demo({
 		Row({1, 2, 0, 3}),
 		Row({3, 4, 1, 8}),
@@ -13,10 +13,6 @@ int main() {
 		Row({1, 2, 0}),
 		Row({3, 4, 1}),
 		Row({3, 4, 2})
-	});
-	Matrix zeroDet({
-		Row({0, 0}),
-		Row({1, 2})
 	});
 	//demo.swap(1, 2); // R_1 <--> R_2
 	//demo.replace(1, 1, -3, 2, 1); // R_1 - 3R_2 --> R_1
@@ -35,7 +31,9 @@ int main() {
 	std::cout << "\n";
 	std::cout << "U part of LU factorization:\n";
 	printMatrix(LU.second);
-
+	std::cout << "\n";
+	std::cout << "Product of L and U (LU); should be equal to original coefficient matrix\n";
+	printMatrix(LU.first * LU.second);
 	std::cout << "\n\n";
 	Matrix inverse = findInverse(demoCoeff);
 	std::cout << "Inverse:\n";

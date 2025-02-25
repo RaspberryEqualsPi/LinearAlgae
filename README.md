@@ -1,9 +1,3 @@
-
-# Project Title
-
-A brief description of what this project does and who it's for
-
-
 # LinearAlgae
 
 A very simple linear algebra library I made for fun as an exercise for Elementary Linear Algebra. It can find REF, RREF, inverse, determinant, and LU factorization in O(m^2 \* n), O(m^2 \* n), O(m^3), O(m^3), and O(m^3) time complexity respectively. The product AB, where A has dimensions a x b and B has dimensions b x c, can be found in O(abc) time.

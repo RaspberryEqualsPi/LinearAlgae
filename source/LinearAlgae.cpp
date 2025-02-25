@@ -4,7 +4,7 @@
 #include "LinearAlgae.h"
 
 namespace LinearAlgae {
-	void Row::setEntry(int j, int val) { // sets the jth entry to val. j is 1-indexed
+	void Row::setEntry(int j, float val) { // sets the jth entry to val. j is 1-indexed
 		content[j - 1] = val;
 	}
 	float Row::getEntry(int j) {
@@ -155,7 +155,7 @@ namespace LinearAlgae {
 	}
 
 	// Everything else
-	void Matrix::setEntry(int i, int j, int val) { // sets the jth entry to val. j is 1-indexed
+	void Matrix::setEntry(int i, int j, float val) { // sets the jth entry to val. j is 1-indexed
 		content[i - 1].setEntry(j, val);
 	}
 	float Matrix::getEntry(int i, int j) {
@@ -215,7 +215,7 @@ namespace LinearAlgae {
 		}
 		return res;
 	}
-	Matrix Matrix::operator*(Matrix& obj) { // O(m_A*n_B*n) algorithm to take the matrix product AB
+	Matrix Matrix::operator*(Matrix& obj) { // O(m_A*n_B*n_A) algorithm to take the matrix product AB
 		if (getN() != obj.getM()) // in multiplying matrices, the dimensions must have n_A = m_B
 			throw std::invalid_argument("inner dimensions must match to multiply");
 		Matrix res(getM(), obj.getN()); // the resultant matrix will be m x n under the previously stated set of dimensions

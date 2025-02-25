@@ -4,7 +4,7 @@
 namespace LinearAlgae {
 	class Row {
 	public:
-		void setEntry(int j, int val);
+		void setEntry(int j, float val);
 		float getEntry(int j);
 		int getSize();
 		std::vector<float>* getRaw();
@@ -47,7 +47,7 @@ namespace LinearAlgae {
 		void applyOperation(ElemOp op);
 
 		// Everything else
-		void setEntry(int i, int j, int val);
+		void setEntry(int i, int j, float val);
 		float getEntry(int i, int j);
 		int getM();
 		int getN();

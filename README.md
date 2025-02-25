@@ -3,6 +3,7 @@
 
 A very simple linear algebra library I made for fun as an exercise for Elementary Linear Algebra. It can find REF, RREF, inverse, determinant, and LU factorization in O(m^2 \* n), O(m^2 \* n), O(m^3), O(m^3), and O(m^3) time complexity respectively. The product AB, where A has dimensions a x b and B has dimensions b x c, can be found in O(abc) time.
 
+Everything below must be accessed from the LinearAlgae namespace.
 
 
 
@@ -11,7 +12,7 @@ A very simple linear algebra library I made for fun as an exercise for Elementar
 ### Row Class Methods
 
 #### Set jth entry
-```http
+```cpp
   void setEntry(int j, int val)
 ```
 
@@ -23,7 +24,7 @@ A very simple linear algebra library I made for fun as an exercise for Elementar
 Returns void
 
 #### Get jth entry
-```http
+```cpp
   float getEntry(int j)
 ```
 
@@ -35,14 +36,14 @@ Returns a float representing the entry
 
 
 #### Get size
-```http
+```cpp
   int getSize()
 ```
 
 Returns an integer representing the size of the row
 
 #### Get raw contents
-```http
+```cpp
   std::vector<float>* getRaw()
 ```
 
@@ -51,7 +52,7 @@ Returns std::vector<float>*; a pointer to the vector storing the entries
 ### Matrix Class Methods
 
 #### Construct a swap operation
-```http
+```cpp
   ElemOp swap(int a, int b)
 ```
 
@@ -63,7 +64,7 @@ Returns std::vector<float>*; a pointer to the vector storing the entries
 Returns ElemOp representing R_a <--> R_b
 
 #### Construct a replace operation
-```http
+```cpp
   ElemOp replace(float a, int b, float c, int d)
 ```
 
@@ -77,7 +78,7 @@ Returns ElemOp representing R_a <--> R_b
 Returns ElemOp representing aR_b + cR_d --> R_d
 
 #### Construct a scale operation
-```http
+```cpp
   ElemOp scale(float a, int b)
 ```
 
@@ -89,7 +90,7 @@ Returns ElemOp representing aR_b + cR_d --> R_d
 Returns ElemOp representing aR_b --> R_b
 
 #### Apply an elementary operation
-```http
+```cpp
   void applyOperation(ElemOp op)
 ```
 
@@ -100,7 +101,7 @@ Returns ElemOp representing aR_b --> R_b
 Returns void
 
 #### Apply an elementary operation
-```http
+```cpp
   void applyOperation(ElemOp op)
 ```
 
@@ -111,7 +112,7 @@ Returns void
 Returns void
 
 #### Set an entry
-```http
+```cpp
   void setEntry(int i, int j, float val)
 ```
 
@@ -124,7 +125,7 @@ Returns void
 Returns void
 
 #### Get an entry
-```http
+```cpp
   float getEntry(int i, int j)
 ```
 
@@ -136,21 +137,21 @@ Returns void
 Returns float representing the value at i, j
 
 #### Get m
-```http
+```cpp
   int getM()
 ```
 
 Returns int representing the dimension m (matrix is assumed to be m x n)
 
 #### Get n
-```http
+```cpp
   int getN()
 ```
 
 Returns int representing the dimension n (matrix is assumed to be m x n)
 
 #### Get raw contents
-```http
+```cpp
   std::vector<Row>* getRaw()
 ```
 
@@ -159,7 +160,7 @@ Returns std::vector<Row>*; a pointer to the vector storing the rows
 ### Utility Methods
 
 #### Print a row
-```http
+```cpp
   void printRow(Row row)
 ```
 
@@ -170,7 +171,7 @@ Returns std::vector<Row>*; a pointer to the vector storing the rows
 Returns void
 
 #### Print a matrix
-```http
+```cpp
   void printMatrix(Matrix matrix)
 ```
 
@@ -181,7 +182,7 @@ Returns void
 Returns void
 
 #### Print an elementary operation
-```http
+```cpp
   void printOperation(ElemOp op)
 ```
 
@@ -192,7 +193,7 @@ Returns void
 Returns void
 
 #### Invert an elementary operation
-```http
+```cpp
   ElemOp inverseOperation(ElemOp op)
 ```
 
@@ -203,7 +204,7 @@ Returns void
 Returns an ElemOp representing the inverse of op
 
 #### Construct an identity matrix
-```http
+```cpp
   Matrix createIdentityMatrix(int n)
 ```
 
@@ -214,7 +215,7 @@ Returns an ElemOp representing the inverse of op
 Returns a Matrix representing I_n, the n x n identity matrix
 
 #### Put a matrix into REF
-```http
+```cpp
   std::vector<ElemOp> REF(Matrix& matrix)
 ```
 
@@ -225,7 +226,7 @@ Returns a Matrix representing I_n, the n x n identity matrix
 Directly modifies the matrix to put it into REF. Returns std::vector<ElemOp> representing the operations performed to row-reduce the matrix.
 
 #### Put a matrix into RREF
-```http
+```cpp
   std::vector<ElemOp> RREF(Matrix& matrix)
 ```
 
@@ -236,7 +237,7 @@ Directly modifies the matrix to put it into REF. Returns std::vector<ElemOp> rep
 Directly modifies the matrix to put it into RREF. Returns std::vector<ElemOp> representing the operations performed to RREF the matrix.
 
 #### Find the inverse of a matrix
-```http
+```cpp
   Matrix findInverse(Matrix mat)
 ```
 
@@ -247,7 +248,7 @@ Directly modifies the matrix to put it into RREF. Returns std::vector<ElemOp> re
 Returns a Matrix representing the inverse of mat.
 
 #### Find the determinant of a matrix
-```http
+```cpp
   float findDeterminant(Matrix mat)
 ```
 
@@ -258,7 +259,7 @@ Returns a Matrix representing the inverse of mat.
 Returns a float representing the determinant of mat
 
 #### Find the LU factorization of a matrix
-```http
+```cpp
   std::pair<Matrix, Matrix> findLUFactorization(Matrix mat)
 ```
 

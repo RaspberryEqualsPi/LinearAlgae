@@ -1,4 +1,9 @@
 
+# Project Title
+
+A brief description of what this project does and who it's for
+
+
 # LinearAlgae
 
 A very simple linear algebra library I made for fun as an exercise for Elementary Linear Algebra. It can find REF, RREF, inverse, determinant, and LU factorization in O(m^2 \* n), O(m^2 \* n), O(m^3), O(m^3), and O(m^3) time complexity respectively. The product AB, where A has dimensions a x b and B has dimensions b x c, can be found in O(abc) time.
@@ -21,7 +26,7 @@ Everything below must be accessed from the LinearAlgae namespace.
 | `j` | `integer` | The jth entry in the row |
 | `val` | `float` | The value to set the entry to |
 
-Returns void
+Returns ```void```
 
 #### Get jth entry
 ```cpp
@@ -32,7 +37,7 @@ Returns void
 | :-------- | :------- | :------------------------- |
 | `j` | `integer` | The jth entry in the row |
 
-Returns a float representing the entry
+Returns a ```float``` representing the entry
 
 
 #### Get size
@@ -47,7 +52,7 @@ Returns an integer representing the size of the row
   std::vector<float>* getRaw()
 ```
 
-Returns std::vector<float>*; a pointer to the vector storing the entries
+Returns ```std::vector<float>*```; a pointer to the vector storing the entries
 
 ### Matrix Class Methods
 
@@ -61,7 +66,7 @@ Returns std::vector<float>*; a pointer to the vector storing the entries
 | `a` | `integer` | Row on the LHS |
 | `b` | `integer` | Row on the RHS |
 
-Returns ElemOp representing R_a <--> R_b
+Returns ```ElemOp``` representing R_a <--> R_b
 
 #### Construct a replace operation
 ```cpp
@@ -75,7 +80,7 @@ Returns ElemOp representing R_a <--> R_b
 | `c` | `float` | Coefficient of the right row |
 | `d` | `integer` | Index of the right row and the row on the RHS |
 
-Returns ElemOp representing aR_b + cR_d --> R_d
+Returns ```ElemOp``` representing aR_b + cR_d --> R_d
 
 #### Construct a scale operation
 ```cpp
@@ -87,7 +92,7 @@ Returns ElemOp representing aR_b + cR_d --> R_d
 | `a` | `float` | Scaling factor |
 | `b` | `integer` | Index of row |
 
-Returns ElemOp representing aR_b --> R_b
+Returns ```ElemOp``` representing aR_b --> R_b
 
 #### Apply an elementary operation
 ```cpp
@@ -98,7 +103,7 @@ Returns ElemOp representing aR_b --> R_b
 | :-------- | :------- | :------------------------- |
 | `op` | `ElemOp` | The operation to apply |
 
-Returns void
+Returns ```void```
 
 #### Apply an elementary operation
 ```cpp
@@ -109,7 +114,7 @@ Returns void
 | :-------- | :------- | :------------------------- |
 | `op` | `ElemOp` | The operation to apply |
 
-Returns void
+Returns ```void```
 
 #### Set an entry
 ```cpp
@@ -122,7 +127,7 @@ Returns void
 | `j` | `integer` | The column |
 | `val` | `float` | The value to set it to |
 
-Returns void
+Returns ```void```
 
 #### Get an entry
 ```cpp
@@ -134,28 +139,28 @@ Returns void
 | `i` | `integer` | The row |
 | `j` | `integer` | The column |
 
-Returns float representing the value at i, j
+Returns ```float``` representing the value at i, j
 
 #### Get m
 ```cpp
   int getM()
 ```
 
-Returns int representing the dimension m (matrix is assumed to be m x n)
+Returns ```int``` representing the dimension m (matrix is assumed to be m x n)
 
 #### Get n
 ```cpp
   int getN()
 ```
 
-Returns int representing the dimension n (matrix is assumed to be m x n)
+Returns ```int``` representing the dimension n (matrix is assumed to be m x n)
 
 #### Get raw contents
 ```cpp
   std::vector<Row>* getRaw()
 ```
 
-Returns std::vector<Row>*; a pointer to the vector storing the rows
+Returns ```std::vector<Row>*```; a pointer to the vector storing the rows
 
 ### Utility Methods
 
@@ -168,7 +173,7 @@ Returns std::vector<Row>*; a pointer to the vector storing the rows
 | :-------- | :------- | :------------------------- |
 | `row` | `Row` | The row to print |
 
-Returns void
+Returns ```void```
 
 #### Print a matrix
 ```cpp
@@ -179,7 +184,7 @@ Returns void
 | :-------- | :------- | :------------------------- |
 | `matrix` | `Matrix` | The matrix to print |
 
-Returns void
+Returns ```void```
 
 #### Print an elementary operation
 ```cpp
@@ -190,7 +195,7 @@ Returns void
 | :-------- | :------- | :------------------------- |
 | `op` | `ElemOp` | The operation to print |
 
-Returns void
+Returns ```void```
 
 #### Invert an elementary operation
 ```cpp
@@ -201,7 +206,7 @@ Returns void
 | :-------- | :------- | :------------------------- |
 | `op` | `ElemOp` | The operation to invert |
 
-Returns an ElemOp representing the inverse of op
+Returns an ```ElemOp``` representing the inverse of op
 
 #### Construct an identity matrix
 ```cpp
@@ -212,7 +217,7 @@ Returns an ElemOp representing the inverse of op
 | :-------- | :------- | :------------------------- |
 | `n` | `integer` | Dimension of the identity matrix |
 
-Returns a Matrix representing I_n, the n x n identity matrix
+Returns a ```Matrix``` representing I_n, the n x n identity matrix
 
 #### Put a matrix into REF
 ```cpp
@@ -223,7 +228,7 @@ Returns a Matrix representing I_n, the n x n identity matrix
 | :-------- | :------- | :------------------------- |
 | `matrix` | `Matrix` | Matrix to REF |
 
-Directly modifies the matrix to put it into REF. Returns std::vector<ElemOp> representing the operations performed to row-reduce the matrix.
+Directly modifies the matrix to put it into REF. Returns ```std::vector<ElemOp>``` representing the operations performed to row-reduce the matrix.
 
 #### Put a matrix into RREF
 ```cpp
@@ -234,7 +239,7 @@ Directly modifies the matrix to put it into REF. Returns std::vector<ElemOp> rep
 | :-------- | :------- | :------------------------- |
 | `matrix` | `Matrix` | Matrix to RREF |
 
-Directly modifies the matrix to put it into RREF. Returns std::vector<ElemOp> representing the operations performed to RREF the matrix.
+Directly modifies the matrix to put it into RREF. Returns ```std::vector<ElemOp>``` representing the operations performed to RREF the matrix.
 
 #### Find the inverse of a matrix
 ```cpp
@@ -245,7 +250,7 @@ Directly modifies the matrix to put it into RREF. Returns std::vector<ElemOp> re
 | :-------- | :------- | :------------------------- |
 | `mat` | `Matrix` | Matrix to invert |
 
-Returns a Matrix representing the inverse of mat.
+Returns a ```Matrix``` representing the inverse of mat.
 
 #### Find the determinant of a matrix
 ```cpp
@@ -256,7 +261,7 @@ Returns a Matrix representing the inverse of mat.
 | :-------- | :------- | :------------------------- |
 | `mat` | `Matrix` | Matrix to find the determinant of |
 
-Returns a float representing the determinant of mat
+Returns a ```float``` representing the determinant of mat
 
 #### Find the LU factorization of a matrix
 ```cpp
@@ -267,6 +272,6 @@ Returns a float representing the determinant of mat
 | :-------- | :------- | :------------------------- |
 | `mat` | `Matrix` | Matrix to find the LU factorization of |
 
-Returns a std::pair<Matrix, Matrix> with the first element being L and the second element being U
+Returns a ```std::pair<Matrix, Matrix>``` with the first element being L and the second element being U
 
 
